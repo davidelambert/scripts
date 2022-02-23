@@ -1,6 +1,6 @@
-import sys
 import subprocess
 import time
+import argparse
 
 
 def downshift(minutes=90, end_temp=2500):
@@ -14,12 +14,12 @@ def downshift(minutes=90, end_temp=2500):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 1:
-        downshift()
-    elif len(sys.argv) == 2:
-        downshift(float(sys.argv[1]))
-    elif len(sys.argv) == 3:
-        downshift(float(sys.argv[1]), float(sys.argv[2]))
-    else:
-        print('usage: python downshift.py [MINUTES] [END TEMP]')
+    parser = argparse.ArgumentParser(prog='downshift')
+    parser.add_argument('minutes', type=float, default=90, nargs='?',
+                    help='time over which to shift color temperature; default 90')
+    parser.add_argument('end_temp', type=int, default=2500, nargs='?',
+                    help='Ending color temperature, from 1000-6500; default 2500')
+    args = parser.parse_args()
+
+    downshift(args.minutes, args.end_temp)
 
