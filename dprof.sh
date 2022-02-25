@@ -14,7 +14,7 @@ case $1 in
     ;;
     night2 )
         xcalib -c
-        xcalib -gc .8 -co 80 && sct 2500
+        xcalib -gc .8 -co 80 -a && sct 2500
     ;;
     * )
         echo -e "\"$1\" is not currently defined"
