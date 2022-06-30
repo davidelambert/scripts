@@ -10,7 +10,9 @@ def downshift(minutes=90, end_temp=2500):
     while current_temp > end_temp:
         current_temp -= 100
         subprocess.run(['sct', str(current_temp)])
+        print('Temp:', current_temp, end='\r')
         time.sleep(intvl)
+    print('\n\n')
 
 
 if __name__ == '__main__':
